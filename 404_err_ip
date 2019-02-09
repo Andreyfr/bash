@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "------------------------------------------------"
+echo -n "Please enter name file:"
+read file_name
+echo "------------------------------------------------"
+cd Downloads
+cat $file_name |awk '($8 == "404"){print " - ", $3}'|sort|uniq -c|sort -nr
+first_ip=`cat $file_name |awk '($8 == "404"){print " - ", $3}'|sort|uniq -c|sort -nr|awk '(NR == "1"){print $3}'|cut -f1 -d":"`
+second_ip=`cat $file_name |awk '($8 == "404"){print " - ", $3}'|sort|uniq -c|sort -nr|awk '(NR == "2"){print $3}'|cut -f1 -d":"`
+third_ip=`cat $file_name |awk '($8 == "404"){print " - ", $3}'|sort|uniq -c|sort -nr|awk '(NR == "3"){print $3}'|cut -f1 -d":"`
+geo=`geoiplookup $first_ip`
+geo1=`geoiplookup $second_ip`
+geo2=`geoiplookup $third_ip`
+echo "------------------------------------------------"
+n=`cat $file_name|wc -l`
+echo "Summary number of requests:" $n 
+echo "------------------------------------------------"
+echo $first_ip " - " $geo
+echo $second_ip " - " $geo1
+echo $third_ip " - " $geo2
+echo "------------------------------------------------"
