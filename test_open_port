@@ -1,0 +1,23 @@
+#!/bin/bash
+
+p="======================================================"
+current_ip=$(curl suip.biz/ip/ 2>/dev/null)
+proxy_ip=$(proxychains4 curl suip.biz/ip/ 2>/dev/null)
+
+echo $p
+echo "Your current IP: "$current_ip
+echo "Your IP with proxy server: "$proxy_ip
+echo $p
+
+echo -n "Please enter your target IP address or URL for detail information about ports:"
+read target_server
+target=`echo $target_server|awk -F "/" '{print  $3}'`
+echo $target
+
+proxychains4 nmap -sT -PN -sV --open -n -F $target 2>/dev/null
+
+echo $p
+sudo /etc/init.d/tor restart
+echo "Your current IP: "$current_ip
+echo "Your new IP with proxy server: "$proxy_ip
+echo $p
