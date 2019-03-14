@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+echo -n "Please enter file name:"
+read response
+
+touch $response;
+chmod +x $response;
+vim $response;
+
+echo "Your file was successfully created!"
