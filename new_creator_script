@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo -n "Please enter file name:"
+read fileName
+y="y"
+n="n"
+
+if [ -f "$fileName" ]
+then
+        echo "File with that name $fileName exists"
+        echo -n "Please enter another file name:"
+        read newFileName
+
+        if [ -f "$newFileName" ]
+        then
+                echo "File with that name $newFileName exists"
+                echo "Please try again with correct name file!!!"
+        else
+                touch $newFileName
+                chmod +x $newFileName
+                echo "Your file was successfully created!"
+                echo -n "Do you want to open this file (Y/n)?"
+                read answerOpenFile
+
+                if [[ "$answerOpenFile" == "$y" ]]
+                then
+                        vim $newFileName
+                else
+                        echo "Thanks, Have a nice day"
+                fi
+        fi
+else
+        touch $fileName
+        chmod +x $fileName
+        echo "Your file was successfully created!"
+        echo -n "Do you want to open this file (Y/n)?"
+        read responseOpenFile
+
+                if [[ "$responseOpenFile" == "$y" ]]
+                then
+                        vim $newFileName
+                else
+                        echo "Thanks, Have a nice day"
+                fi
+
+fi
