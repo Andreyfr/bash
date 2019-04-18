@@ -38,7 +38,7 @@ else
 
                 if [[ "$responseOpenFile" == "$y" ]]
                 then
-                        vim $newFileName
+                        vim $fileName
                 else
                         echo "Thanks, Have a nice day"
                 fi
