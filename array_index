@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ar=(Hello World Bye)
+
+for (( c=0; c<${#ar[*]}; c++ ))
+do
+        echo $c"."${ar[$c]} 
+
+        if [[ "$c" == 1 ]]
+        then
+                echo "yuo chouce - world"
+        else
+                echo "false"
+        fi
+        
+done
