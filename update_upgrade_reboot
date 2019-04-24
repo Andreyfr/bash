@@ -1,0 +1,27 @@
+#!/bin/bash
+
+itemList=(Update Upgrade Reboot)
+
+for (( i=0; i<${#itemList[*]}; i++ ))
+do
+	echo $i"."${itemList[$i]}
+done
+
+echo -n "Please enter your number operation:"
+read answer
+
+if [[ "$answer" == "0" ]]
+then
+	sudo apt update
+elif [[ "$answer" == "1" ]]
+then
+	echo y|sudo apt upgrade
+	sudo apt autoremove
+	sudo aptitude autoclean
+elif [[ "$answer" == "2"  ]]
+then
+	sudo service mysql stop
+	reboot
+else
+	echo "Unknown parameter!Please try againe!!!"
+fi
