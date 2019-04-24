@@ -12,10 +12,12 @@ read answer
 
 if [[ "$answer" == "0" ]]
 then
-	sudo apt update
+	#sudo apt update
+	sudo atp-fast update
 elif [[ "$answer" == "1" ]]
 then
-	echo y|sudo apt upgrade
+	#echo y|sudo apt upgrade
+	echo y|sudo apt-fast upgrade
 	sudo apt autoremove
 	sudo aptitude autoclean
 elif [[ "$answer" == "2"  ]]
