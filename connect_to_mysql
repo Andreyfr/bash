@@ -1,5 +1,5 @@
 #!/bin/bash
-
+$passwd="paswd"
 un="andrew"
 db="test_app_db"
 
@@ -7,4 +7,4 @@ while read -r output;
 do
     echo $output | awk '{print $0}'
     #do something
-done< <(mysql -u $un -p $db -h 0 -e "select * from test_users;" |column -t)
+done< <(mysql -u $un -p$passwd $db -h 0 -e "select * from test_users;" |column -t)
